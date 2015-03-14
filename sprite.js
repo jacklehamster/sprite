@@ -82,8 +82,8 @@
         div.style.width = sourceCrop[2]+"px";
         div.style.height = sourceCrop[3]+"px";
         var hotSpot = data.hotspot;
-        div.style.marginLeft = -hotSpot[0]+"px";
-        div.style.marginTop = -hotSpot[1]+"px";
+        div.style.marginLeft = -hotSpot[0]*div.scale+"px";
+        div.style.marginTop = -hotSpot[1]*div.scale+"px";
         updateHotSpotPosition(div);
     }
     
@@ -95,6 +95,7 @@
         div.scale.x = scaleX;
         div.scale.y = scaleY;
         updateTransform(div);
+        div.update();
     }
     
     //  Move the sprite
