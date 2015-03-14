@@ -130,7 +130,7 @@
         var div = this;
         div.pos.x = x;
         div.pos.y = y;
-        div.style.transform = "translate("+x+"px,"+y+"px)";
+        div.style.transform = div.style.webkitTransform = "translate("+x+"px,"+y+"px)";
     }
     
     function next() {
