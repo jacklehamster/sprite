@@ -105,8 +105,7 @@
             var data = sequence[div.index%sequence.length];
             div.style.backgroundImage = "url("+data.src+")";
             var sourceCrop = data["source-crop"];
-            div.style.backgroundPositionX = -sourceCrop[0]*div.scale+"px";
-            div.style.backgroundPositionY = -sourceCrop[1]*div.scale+"px";
+            div.style.backgroundPosition = -sourceCrop[0]*div.scale+"px "+ -sourceCrop[1]*div.scale+"px";
             div.style.width = sourceCrop[2]*div.scale+"px";
             div.style.height = sourceCrop[3]*div.scale+"px";
             var hotSpot = data.hotspot;
@@ -144,7 +143,6 @@
         var div = this;
         if(value!=div.animated) {
             div.animated = value;
-
 
             var lastAnimation = 0;
             function performAnimation(now) {
