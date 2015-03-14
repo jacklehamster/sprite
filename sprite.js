@@ -22,32 +22,17 @@
         div.asset = asset;
         div.index = 0;
         div.labels = labels;
-        div.scale = 1;
-        div.backgroundSizes = {};
+        div.scale = {x:1,y:1};
         div.pos = {x:0,y:0};
         div.fps = 30;
         div.hotspotVisible = false;
-        
-        var imgsToLoad = {};
+
         var count = 0;
 
         for(var label in asset.animation) {
             if(!div.label) div.label = label;
             var sequence = asset.animation[label];
             labels.push(label);
-            for(var i=0;i<sequence.length;i++) {
-                var data = sequence[i];
-                if(!imgsToLoad[data.src]) {
-                    imgsToLoad[data.src] = true;
-                    count++;
-                    checkBackgroundSize(div,data,
-                        function(src,img) {
-                            count--;
-                            if(!count) div.ready = true;
-                        }
-                    );
-                }
-            }
         }
         
         //  PUBLIC FUNCTIONS
@@ -63,17 +48,6 @@
         div.animate(typeof(options.animate)=="undefined" || option.animate);
         
         return div;
-    }
-    
-    //  This function checks the size of a background image used. When scaling, we need to adjust that size
-    function checkBackgroundSize(div,data,callback) {
-        var img = new Image();
-        img.addEventListener("load",
-            function(event) {
-                div.backgroundSizes[data.src] = [img.naturalWidth,img.naturalHeight];
-                callback();
-            });
-        img.src = data.src;
     }
     
     //  Change the label
@@ -100,29 +74,27 @@
     //  This is the refresh function, readjusting the parameters when something has changed
     function update() {
         var div = this;
-        if(div.ready) {
-            var sequence = div.asset.animation[div.label];
-            var data = sequence[div.index%sequence.length];
-            div.style.backgroundImage = "url("+data.src+")";
-            var sourceCrop = data["source-crop"];
-            div.style.backgroundPosition = -sourceCrop[0]*div.scale+"px "+ -sourceCrop[1]*div.scale+"px";
-            div.style.width = sourceCrop[2]*div.scale+"px";
-            div.style.height = sourceCrop[3]*div.scale+"px";
-            var hotSpot = data.hotspot;
-            div.style.marginLeft = -hotSpot[0]*div.scale+"px";
-            div.style.marginTop = -hotSpot[1]*div.scale+"px";
-            var backgroundSize = div.backgroundSizes[data.src];
-            div.style.backgroundSize = div.scale*backgroundSize[0]+"px " +           
-                div.scale*backgroundSize[1]+"px ";
-            updateHotSpotPosition(div);
-        }
+        var sequence = div.asset.animation[div.label];
+        var data = sequence[div.index%sequence.length];
+        div.style.backgroundImage = "url("+data.src+")";
+        var sourceCrop = data["source-crop"];
+        div.style.backgroundPosition = -sourceCrop[0]+"px "+ -sourceCrop[1]+"px";
+        div.style.width = sourceCrop[2]+"px";
+        div.style.height = sourceCrop[3]+"px";
+        var hotSpot = data.hotspot;
+        div.style.marginLeft = -hotSpot[0]+"px";
+        div.style.marginTop = -hotSpot[1]+"px";
+        updateHotSpotPosition(div);
     }
     
     //  Change the scale
-    function setScale(value) {
+    function setScale(scaleX,scaleY) {
+        if(typeof(scaleY)=="undefined")
+            scaleY = scaleX;
         var div = this;
-        div.scale = value;
-        div.update();
+        div.scale.x = scaleX;
+        div.scale.y = scaleY;
+        updateTransform(div);
     }
     
     //  Move the sprite
@@ -130,7 +102,14 @@
         var div = this;
         div.pos.x = x;
         div.pos.y = y;
-        div.style.transform = div.style.webkitTransform = "translate("+x+"px,"+y+"px)";
+        updateTransform(div);
+    }
+    
+    function updateTransform(div) {
+        var transform = "translate("+div.pos.x+"px,"+div.pos.y+"px) "
+            + " scaleX("+div.scale.x+") scaleY("+div.scale.y+")";
+        div.style.transform = div.style.webkitTransform = transform;
+        
     }
     
     function next() {
