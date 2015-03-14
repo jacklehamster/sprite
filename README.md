@@ -52,7 +52,7 @@ For each frame of animation, you must define the following properties:
 
 ## Available functions
 * `sprite.moveTo(x,y)`: Moves the sprite at x,y position. x and y are relative to the screen. The sprite is moved using css `transform = "translate(x,y)"`. The read-only property for the position is `sprite.pos`.
-* `sprite.setScale(scale)`: Resize the sprite by a factor of scale. The read-only property is `sprite.scale`.
+* `sprite.setScale(scale) / sprite.setScale(scaleX,scaleY)`: Resize the sprite by a factor of scale. Note that you can pass one parameter to scale both X and Y axis, or you can pass two parameters to change scaleX and scaleY separately. The read-only property is `sprite.scale`.
 * `sprite.gotoAndPlay(label)`: Goes to a defined animation. The read-only property is `sprite.label`.
 * `sprite.setAnimated(true/false)`: Starts or stops the animation while keeping the current label. The read-only property is `sprite.animated`.
 * `sprite.fps = frameRate`: Sets the framerate of the animation, in frame-per-second.
