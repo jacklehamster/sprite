@@ -81,9 +81,12 @@
         div.style.backgroundPosition = -sourceCrop[0]+"px "+ -sourceCrop[1]+"px";
         div.style.width = sourceCrop[2]+"px";
         div.style.height = sourceCrop[3]+"px";
+        var scaleShiftX = -sourceCrop[2]*(1-div.scale.x)/2;
+        var scaleShiftY = -sourceCrop[3]*(1-div.scale.y)/2;
+        
         var hotSpot = data.hotspot;
-        div.style.marginLeft = -(hotSpot[0]+sourceCrop[2]*(div.scale.x-1))+"px";
-        div.style.marginTop = -(hotSpot[1]+sourceCrop[3]*(div.scale.y-1))+"px";
+        div.style.marginLeft = (scaleShiftX-hotSpot[0])+"px";
+        div.style.marginTop = (scaleShiftY-hotSpot[1])+"px";
         updateHotSpotPosition(div);
     }
     
