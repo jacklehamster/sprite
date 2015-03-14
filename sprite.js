@@ -173,8 +173,8 @@
     var hotspotDiv = null;
     function setHotSpotVisible(value) {
         var div = this;
+        div.hotspotVisible = value;
         if(value) {
-            div.hotspotVisible = value;
             if(!hotspotDiv) {
                 var cross = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAP0lEQVQ4je2TsQ0AMAzCrD6e0+nQA2JV7RYkNmQWAKlA2awFxuTW09YBDvASGKhAOsMZd2P/pnnKAD8CtexoN6jSK/Ocry2hAAAAAElFTkSuQmCC";
                 var img = new Image();

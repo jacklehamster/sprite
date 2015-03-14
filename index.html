@@ -78,7 +78,7 @@
       !sprite.animated+
       ')';
     document.getElementById("switchFPS").value = 'sprite.fps = '+ (sprite.fps==10?60:10);
-    document.getElementById("switchHotspot").value = 'sprite.setHotspotVisible('+ (sprite.hotspotVisible) + ')';
+    document.getElementById("switchHotspot").value = 'sprite.setHotspotVisible('+ (!sprite.hotspotVisible) + ')';
   }
 </script>
 
