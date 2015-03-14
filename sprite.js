@@ -85,8 +85,8 @@
         var scaleShiftY = sourceCrop[3]*(1-div.scale.y)/2;
 
         var hotSpot = [0,0];// data.hotspot;
-        div.style.marginLeft = (scaleShiftX-hotSpot[0])+"px";
-        div.style.marginTop = (scaleShiftY-hotSpot[1])+"px";
+        div.style.marginLeft = (-scaleShiftX-hotSpot[0])+"px";
+        div.style.marginTop = (-scaleShiftY-hotSpot[1])+"px";
         updateHotSpotPosition(div);
     }
     
