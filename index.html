@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../header.js"></script>
+<script src="asset.js"></script>
+<script src="sprite.js"></script>
+<title>Sprite Animator</title>
+
+<script>
+    
+    
+  var sprite;
+  function init() {
+    sprite = createSprite(getMeatlyAsset());
+    sprite.id = 'sprite';
+    sprite.moveTo(150,380);
+    sprite.setScale(.5);
+    sprite.fps = 10;
+    updateStatus();
+    document.body.appendChild(sprite);
+    document.addEventListener("mousedown",onMouse);
+    document.addEventListener("mousemove",onMouse);
+  }
+    
+  function onMouse(event) {
+    var isMouseDown = (event.buttons!==undefined?event.buttons:event.which);
+    if(isMouseDown && event.target==document.body.parentElement) {
+        sprite.moveTo(event.pageX,event.pageY);
+        updateStatus();
+        event.preventDefault();
+    }
+  }
+  
+  function switchLabel() {
+    var newLabel = sprite.labels[(sprite.labels.indexOf(sprite.label)+1)%sprite.labels.length];
+    sprite.gotoAndPlay(newLabel);
+    updateStatus();
+  }
+    
+  function switchScale() {
+     var newScale = sprite.scale==.5?1:.5;
+     sprite.setScale(newScale);
+     updateStatus();
+  }
+    
+  function switchAnimate() {
+      sprite.animate(!sprite.animated);
+      updateStatus();
+  }
+    
+  function switchFPS() {
+      sprite.fps = sprite.fps==10?60:10;
+      updateStatus();
+  }
+    
+  function switchHotspot() {
+      sprite.setHotspotVisible(!sprite.hotspotVisible);
+      updateStatus();
+  }
+    
+  function updateStatus() {
+    document.getElementById("posStatus").innerHTML = 
+        "<b>sprite.pos</b>: {x:" + sprite.pos.x+",y:"+sprite.pos.y+"}";
+    document.getElementById("scaleStatus").innerHTML = "<b>sprite.scale</b>: "+sprite.scale;
+    document.getElementById("labelStatus").innerHTML = "<b>sprite.label</b>: "+sprite.label;
+    document.getElementById("animatedStatus").innerHTML = "<b>sprite.animated</b>: "+sprite.animated;
+    document.getElementById("fpsStatus").innerHTML = 
+        "<b>sprite.fps</b>: " + sprite.fps;
+    document.getElementById("hotspotStatus").innerHTML = 
+        "<b>sprite.hotspotVisible</b>: " + sprite.hotspotVisible;
+    document.getElementById("switchScale").value = 'sprite.setScale('+
+      (sprite.scale==.5?1:.5)+
+      ')';
+    document.getElementById("switchLabel").value = 'sprite.gotoAndPlay("'+
+      sprite.labels[(sprite.labels.indexOf(sprite.label)+1)%sprite.labels.length]+
+      '")';
+    document.getElementById("switchAnimate").value = 'sprite.animate('+
+      !sprite.animated+
+      ')';
+    document.getElementById("switchFPS").value = 'sprite.fps = '+ (sprite.fps==10?60:10);
+    document.getElementById("switchHotspot").value = 'sprite.setHotspotVisible('+ (sprite.hotspotVisible) + ')';
+  }
+</script>
+
+</head>
+<body style="margin:0px" onLoad="init()">
+<span id="posStatus"></span> <font color="#999999">( Click on the screen to call sprite.moveTo(x,y) )</font><br>
+<span id="scaleStatus"></span> <input type="button" id='switchScale' onclick="switchScale()"><br>
+<span id="labelStatus"></span> <input type="button" id='switchLabel' onclick="switchLabel()"><br>
+<span id="animatedStatus"></span> <input type="button" id='switchAnimate' onclick="switchAnimate()"><br>
+<span id="fpsStatus"></span> <input type="button" id='switchFPS' onclick="switchFPS()"><br>
+<span id="hotspotStatus"></span> <input type="button" id='switchHotspot' onclick="switchHotspot()"><br>
+<br>
+<hr>
+
+</body>
+</html>
