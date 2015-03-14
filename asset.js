@@ -2,7 +2,7 @@
     
     function getMeatlyAsset() {
         var src = "meatlyjam01spritesheet.png";
-        var spriteData = {
+        var animation = {
             "dude1_walk_left": [
                 {src:src,"source-crop":[512*0,0,512,512],hotspot:[256,498]},
                 {src:src,"source-crop":[512*1,0,512,512],hotspot:[256,498]},
@@ -140,7 +140,7 @@
                 {src:src,"source-crop":[512*7,512*7,512,512],hotspot:[256,318]}
             ]
         };
-        return spriteData;
+        return {animation:animation};
     }
     
     window.getMeatlyAsset = getMeatlyAsset;
