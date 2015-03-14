@@ -44,7 +44,7 @@ The json data is in the form:
 }
 ```
 For each frame of animation, you must define the following properties:
-**label** is a string that you choose. It can be used later to go to an animation sequence using `gotoAndPlay(label)`.
-**src** is the url of your spritesheet image. It can be a data-uri.
-**source-crop** is a rectangle that defines which piece of the sprite sheet we're cropping out.
-**hotspot** is a point within the frame of animation that's fixed for all frame. Usually it's best to aim the hotspot at the feet of a character, or what you consider to be the ground.
+* **label** is a string that you choose. It can be used later to go to an animation sequence using `gotoAndPlay(label)`.
+* **src** is the url of your spritesheet image. It can be a data-uri.
+* **source-crop** is a rectangle that defines which piece of the sprite sheet we're cropping out.
+* **hotspot** is a point within the frame of animation that's fixed for all frame. Usually it's best to aim the hotspot at the feet of a character, or what you consider to be the ground.
