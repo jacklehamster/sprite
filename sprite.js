@@ -31,9 +31,9 @@
         var imgsToLoad = {};
         var count = 0;
 
-        for(var label in asset) {
+        for(var label in asset.animation) {
             if(!div.label) div.label = label;
-            var sequence = asset[label];
+            var sequence = asset.animation[label];
             labels.push(label);
             for(var i=0;i<sequence.length;i++) {
                 var data = sequence[i];
@@ -101,7 +101,7 @@
     function update() {
         var div = this;
         if(div.ready) {
-            var sequence = div.asset[div.label];
+            var sequence = div.asset.animation[div.label];
             var data = sequence[div.index%sequence.length];
             div.style.backgroundImage = "url("+data.src+")";
             var sourceCrop = data["source-crop"];
@@ -136,7 +136,7 @@
     
     function next() {
         var div = this;
-        var sequence = div.asset[div.label];
+        var sequence = div.asset.animation[div.label];
         div.index = (div.index+1)%sequence.length;
     }
     
@@ -164,7 +164,7 @@
     
     function updateHotSpotPosition(div) {
         if(hotspotDiv) {
-            var sequence = div.asset[div.label];
+            var sequence = div.asset.animation[div.label];
             var data = sequence[div.index%sequence.length];
             var hotSpot = data.hotspot;
             hotspotDiv.style.marginLeft = (hotSpot[0]*div.scale-10)+"px";
