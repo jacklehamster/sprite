@@ -61,7 +61,7 @@
   function updateStatus() {
     document.getElementById("posStatus").innerHTML = 
         "<b>sprite.pos</b>: {x:" + sprite.pos.x+",y:"+sprite.pos.y+"}";
-    document.getElementById("scaleStatus").innerHTML = "<b>sprite.scale</b>: "+sprite.scale;
+    document.getElementById("scaleStatus").innerHTML = "<b>sprite.scale</b>: {x:"+sprite.scale.x+",y:"+sprite.scale.y+"}";
     document.getElementById("labelStatus").innerHTML = "<b>sprite.label</b>: "+sprite.label;
     document.getElementById("animatedStatus").innerHTML = "<b>sprite.animated</b>: "+sprite.animated;
     document.getElementById("fpsStatus").innerHTML = 
@@ -69,7 +69,7 @@
     document.getElementById("hotspotStatus").innerHTML = 
         "<b>sprite.hotspotVisible</b>: " + sprite.hotspotVisible;
     document.getElementById("switchScale").value = 'sprite.setScale('+
-      (sprite.scale==.5?1:.5)+
+      (sprite.scale.x==.5?1:.5)+
       ')';
     document.getElementById("switchLabel").value = 'sprite.gotoAndPlay("'+
       sprite.labels[(sprite.labels.indexOf(sprite.label)+1)%sprite.labels.length]+
