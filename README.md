@@ -48,3 +48,12 @@ For each frame of animation, you must define the following properties:
 * **src** is the url of your spritesheet image. It can be a data-uri.
 * **source-crop** is a rectangle that defines which piece of the sprite sheet we're cropping out.
 * **hotspot** is a point within the frame of animation that's fixed for all frame. Usually it's best to aim the hotspot at the feet of a character, or what you consider to be the ground.
+
+
+## Available functions
+* `sprite.moveTo(x,y)`: Moves the sprite at x,y position. x and y are relative to the screen. The sprite is moved using css `transform = "translate(x,y)"`. The read-only property for the position is `sprite.pos`.
+* `sprite.setScale(scale)`: Resize the sprite by a factor of scale. The read-only property is `sprite.scale`.
+* `sprite.gotoAndPlay(label)`: Goes to a defined animation. The read-only property is `sprite.label`.
+* `sprite.setAnimated(true/false)`: Starts or stops the animation while keeping the current label. The read-only property is `sprite.animated`.
+* `sprite.fps = frameRate`: Sets the framerate of the animation, in frame-per-second.
+* `sprite.setHotspotVisible(true/false)`: Show or hide the hotspot within the image. This is mostly for debugging purposes. The read-only property for this is `sprite.hotspotVisible`.
