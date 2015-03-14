@@ -82,8 +82,8 @@
         div.style.width = sourceCrop[2]+"px";
         div.style.height = sourceCrop[3]+"px";
         var hotSpot = data.hotspot;
-        div.style.marginLeft = -hotSpot[0]*div.scale.x+"px";
-        div.style.marginTop = -hotSpot[1]*div.scale.y+"px";
+        div.style.marginLeft = -hotSpot[0]+"px";
+        div.style.marginTop = -hotSpot[1]+"px";
         updateHotSpotPosition(div);
     }
     
@@ -145,8 +145,8 @@
             var sequence = div.asset.animation[div.label];
             var data = sequence[div.index%sequence.length];
             var hotSpot = data.hotspot;
-            hotspotDiv.style.marginLeft = (hotSpot[0]*div.scale.x-10)+"px";
-            hotspotDiv.style.marginTop = (hotSpot[1]*div.scale.y-10)+"px";
+            hotspotDiv.style.marginLeft = (hotSpot[0]-10)+"px";
+            hotspotDiv.style.marginTop = (hotSpot[1]-10)+"px";
         }
     }
     
