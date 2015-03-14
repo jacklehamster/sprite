@@ -82,8 +82,8 @@
         div.style.width = sourceCrop[2]+"px";
         div.style.height = sourceCrop[3]+"px";
         var hotSpot = data.hotspot;
-        div.style.marginLeft = -hotSpot[0]+"px";
-        div.style.marginTop = -hotSpot[1]+"px";
+        div.style.marginLeft = -(hotSpot[0]+sourcecrop[2]*(div.scale.x-1))+"px";
+        div.style.marginTop = -(hotSpot[1]+sourcecrop[3]*(div.scale.y-1))+"px";
         updateHotSpotPosition(div);
     }
     
